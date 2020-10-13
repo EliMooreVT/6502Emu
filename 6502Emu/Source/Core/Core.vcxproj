@@ -161,8 +161,14 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{fffba570-f89a-4445-b2e4-892d431c1759}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Debugger\Debugger.vcxproj">
       <Project>{b13d709b-1b25-405d-89c9-d8c511afba83}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHandler\FileHandler.vcxproj">
+      <Project>{f4d95b42-2b99-4c87-a581-65ff916b036f}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

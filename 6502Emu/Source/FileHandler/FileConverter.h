@@ -1,0 +1,13 @@
+#pragma once
+#include "Common\TypeDec.h"
+#include "FileLoader.h"
+#include "Debugger\Debugger.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
+
+namespace FileConverter
+{
+	void ConvertToBin(std::string fileName);
+}

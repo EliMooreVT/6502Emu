@@ -8,17 +8,20 @@ class CMemory
 {
 public:
 	CMemory(BIT_16 memoryCapacity);
+	~CMemory();
 	static void initMemory();
 	static void destrMemory();
 
-	static BYTE getByte(BIT_16 address);
-	static void setByte(BIT_16 address, BYTE value);
+	BYTE getByte(BIT_16 address);
+	void setByte(BIT_16 address, BYTE value);
+
+	BIT_16 getCapacity();
 
 
 	friend class CMemory;
 protected:
 
-	BYTE * m_memory;
+	Buffer m_memory;
 	BIT_16 m_memoryCapacity;
 
 
