@@ -7,4 +7,5 @@ public:
 	CSystem();
 	static void initSystem();
 	static void destrSystem();
+	
 };

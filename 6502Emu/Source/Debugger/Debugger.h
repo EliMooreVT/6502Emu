@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 
+typedef unsigned char BYTE;
+typedef unsigned short BIT_16;
+
 namespace Debug
 {
 	void print(std::string str);
