@@ -1,6 +1,13 @@
-#include <Core\Test.h>
+#include "debugger.h"
 
-int main()
+using namespace Debug;
+
+void Debug::print(std::string str)
 {
-	Test::Hello();
+	std::cout << str;
+}
+
+void Debug::println(std::string str)
+{
+	std::cout << str << std::endl;
 }
