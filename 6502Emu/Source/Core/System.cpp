@@ -5,7 +5,7 @@ void CSystem::initSystem()
 {
 	g_system = new CSystem();
 	CMemory::initMemory();
-	C6502::initCPU();
+	CPU::initCPU();
 	
 	g_system->loadRom("Code.txt", 0x06ff);
 	g_pc = 0x06ff;

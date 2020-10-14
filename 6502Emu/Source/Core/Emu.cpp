@@ -10,6 +10,6 @@ void Emu::startSystem()
 void Emu::endSystem()
 {
 	CSystem::destrSystem();
-	C6502::destrCPU();
+	CPU::destrCPU();
 	CMemory::destrMemory();
 }

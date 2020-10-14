@@ -25,6 +25,7 @@ std::string FileLoader::rmExtension(std::string fileName)
 std::vector<BYTE> FileLoader::loadFile(std::string fileName)
 {
 	Debug::printBr();
+	Debug::println("Loading File: " + fileName);
 	Debug::println("Checking bin file");
 	if (FileLoader::getExtension(fileName) == ".bin")
 	{
@@ -48,6 +49,8 @@ std::vector<BYTE> FileLoader::loadFile(std::string fileName)
 			Debug::println("");
 			Debug::println("Files read");
 
+			Debug::println("Finished Loading File");
+			Debug::printBr();
 			return inputBuffer;
 		}
 		else
@@ -62,4 +65,5 @@ std::vector<BYTE> FileLoader::loadFile(std::string fileName)
 		Debug::println("Bin file undetected");
 		return std::vector<BYTE>();//TODO: Error Handling
 	}
+
 }

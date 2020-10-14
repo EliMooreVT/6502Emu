@@ -2,20 +2,52 @@
 #include "Common\TypeDec.h"
 #include "stdIncludes.h"
 
-typedef struct SRegisters
-{
-	BYTE a,x,y;
-} Registers;
 
-class C6502
-{
-public:
-	C6502();
+namespace CPU {
+
+
+
+	typedef struct SRegisters
+	{
+		//Main
+		BYTE a;
+
+		//Index
+		BYTE x, y;
+
+		//Stack Pointer
+		BYTE sp;
+
+	} Registers;
+
+	enum FLAGS
+	{
+
+	};
 
 	static void initCPU();
 	static void destrCPU();
 
-	void run();
-private:
-	Registers m_registers;
-};
+	class C6502
+	{
+	public:
+		C6502();
+
+		void run();
+
+		struct getRegister
+		{
+			BYTE a();
+			BYTE x();
+			BYTE y();
+			BYTE sp();
+		};
+		void getFlag();
+		void setFlag();
+
+	private:
+		Registers m_registers;
+		bool m_flags[6];
+
+	};
+}

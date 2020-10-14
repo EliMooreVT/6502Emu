@@ -2,7 +2,7 @@
 #include "stdIncludes.h"
 
 
-extern C6502 * g_cpu;
+extern CPU::C6502 * g_cpu;
 
 
 extern CSystem* g_system;
