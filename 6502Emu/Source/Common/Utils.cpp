@@ -16,4 +16,14 @@ namespace Utils
 		ss << std::hex << std::setfill('0') << std::setw(4) << (int)data;
 		return ss.str();
 	}
+
+	BIT_16 concBytes(BYTE a, BYTE b)
+	{
+		BIT_16 result = a;
+		result = result << 8;
+		result += b;
+		return result;
+	}
+
+
 }

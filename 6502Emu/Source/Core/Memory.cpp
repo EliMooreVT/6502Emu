@@ -56,3 +56,8 @@ BIT_16 CMemory::getCapacity()
 {
 	return m_memoryCapacity;
 }
+
+Buffer CMemory::getBuffer()
+{
+	return m_memory;
+}

@@ -7,8 +7,8 @@ void CSystem::initSystem()
 	CMemory::initMemory();
 	CPU::initCPU();
 	
-	g_system->loadRom("Code.txt", 0x06ff);
-	g_pc = 0x06ff;
+	g_system->loadRom("Code.txt", 0x0600);
+	g_pc = 0x0600;
 
 	g_cpu->run();
 	

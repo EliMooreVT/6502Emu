@@ -17,6 +17,8 @@ public:
 
 	BIT_16 getCapacity();
 
+	Buffer getBuffer();
+
 
 	friend class CMemory;
 protected:

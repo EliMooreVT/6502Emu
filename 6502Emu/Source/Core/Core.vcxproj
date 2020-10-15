@@ -155,6 +155,7 @@
     <ClCompile Include="CPU.cpp" />
     <ClCompile Include="Emu.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Instructions.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="stdIncludes.cpp" />
     <ClCompile Include="System.cpp" />

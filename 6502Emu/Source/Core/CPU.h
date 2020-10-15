@@ -22,11 +22,18 @@ namespace CPU {
 
 	enum FLAGS
 	{
-
+		F_NEGATIVE,
+		F_OVERFLOW,
+		F_IGNORED,
+		F_BREAK,
+		F_DECIMAL,
+		F_INTERRUPT,
+		F_ZERO,
+		F_CARRY
 	};
 
-	static void initCPU();
-	static void destrCPU();
+	void initCPU();
+	void destrCPU();
 
 	class C6502
 	{
@@ -35,19 +42,41 @@ namespace CPU {
 
 		void run();
 
-		struct getRegister
-		{
-			BYTE a();
-			BYTE x();
-			BYTE y();
-			BYTE sp();
-		};
-		void getFlag();
-		void setFlag();
+		
+		BYTE getRegister_a();
+		BYTE getRegister_x();
+		BYTE getRegister_y();
+		BYTE getRegister_sp();
+		
+		void setRegister_a(BYTE b);
+		void setRegister_x(BYTE b);
+		void setRegister_y(BYTE b);
+		void setRegister_sp(BYTE b);
 
-	private:
+		bool getFlag(int flag);
+		void setFlag(int flag, bool b);
+
+		void fetchInstruction();
+		BYTE readInstruction();
+		void execute();
+
+
+		
+	protected:
+		BYTE m_instructionRegister;
 		Registers m_registers;
 		bool m_flags[6];
+
+		//Instructions
+		void noop();
+		void lda_imm();
+		void lda_zp();
+
+		void sta_zp();
+
+		void adc_imm();
+
+		void jmp_abs();
 
 	};
 }

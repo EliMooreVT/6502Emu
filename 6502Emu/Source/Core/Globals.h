@@ -9,4 +9,4 @@ extern CSystem* g_system;
 
 extern CMemory* g_memory;
 
-extern BYTE g_pc;
+extern BIT_16 g_pc;
