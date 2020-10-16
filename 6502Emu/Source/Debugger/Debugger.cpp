@@ -6,26 +6,38 @@ namespace Debug
 
 	namespace //Private Variables
 	{
-		bool m_enabled;
+		bool m_printEnabled;
 		bool m_stepsEnabled;
 		bool m_mvEnabled;
-
-		BYTE m_mv_registers[3];
-		Buffer m_mv_memory;
-
 	}
 
 	void print(std::string str)
 	{
-		if (m_enabled)
+		if (m_printEnabled)
 		{
 			std::cout << str;
 		}
 	}
 
+	void printb(BYTE b)
+	{
+		if (m_printEnabled)
+		{
+			std::cout << std::setfill('0') << std::setw(2) << std::hex << (int)b;
+		}
+	}
+
+	void printad(BIT_16 b)
+	{
+		if (m_printEnabled)
+		{
+			std::cout << std::setfill('0') << std::setw(4) << std::hex << (int)b;
+		}
+	}
+
 	void println(std::string str)
 	{
-		if (m_enabled)
+		if (m_printEnabled)
 		{
 			std::cout << str << std::endl;
 		}
@@ -34,17 +46,17 @@ namespace Debug
 
 	void printBr()
 	{
-		if (m_enabled)
+		if (m_printEnabled)
 		{
 			std::cout << std::endl << "----------------------" << std::endl;
 		}
 		
 	}
 
-	void Enable()
-	{ m_mvEnabled = true; }
-	void Disable()
-	{ m_mvEnabled = false; }
+	void enablePrint()
+	{ m_printEnabled = true; }
+	void disablePrint()
+	{ m_printEnabled = false; }
 
 	void enableSteps()
 	{ m_stepsEnabled = true; }
@@ -61,7 +73,7 @@ namespace Debug
 	void updateMV(//MemViewer
 		Buffer mem,
 		bool flags[6],
-		BYTE m_mv_registers[3],
+		BYTE registers[3],
 		BIT_16 pc,
 		BIT_16 start,
 		BIT_16 end,
@@ -75,10 +87,10 @@ namespace Debug
 
 			//Registers
 			std::cout 
-				<< "A: " << std::setfill('0') << std::setw(2) << std::hex << (int)m_mv_registers[0] << "|"
-				<< "X: " << std::setfill('0') << std::setw(2) << std::hex << (int)m_mv_registers[1] << "|"
-				<< "Y: " << std::setfill('0') << std::setw(2) << std::hex << (int)m_mv_registers[2] << "|"
-				<< "PC: " << std::setfill('0') << std::setw(4) << std::hex << (int)pc << "|";
+				<< "A: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[0] << " | "
+				<< "X: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[1] << " | "
+				<< "Y: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[2] << " | "
+				<< "PC: " << std::setfill('0') << std::setw(4) << std::hex << (int)pc << " | ";
 
 
 			//Flags
@@ -90,6 +102,8 @@ namespace Debug
 				<< (flags[3] ? "I" : "i")
 				<< (flags[4] ? "Z" : "z")
 				<< (flags[5] ? "C" : "c");
+
+			std::cout << " | Inst: 0x" << std::setfill('0') << std::setw(2) << std::hex << (int)mem[pc];
 
 			std::cout << std::endl;
 			for (BIT_16 i = start; i < end; i++)

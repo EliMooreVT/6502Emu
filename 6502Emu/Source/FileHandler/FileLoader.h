@@ -10,6 +10,7 @@
 namespace FileLoader
 {
 	std::vector<BYTE> loadFile(std::string fileName);
+	std::vector<BYTE> loadByteTextFile(std::string fileName);
 	std::string getExtension(std::string fileName);
 	std::string rmExtension(std::string fileName);
 };

@@ -3,9 +3,9 @@
 
 int main()
 {
-	
-	Debug::Enable();
+
 	Debug::mvEnable();
+	Debug::enablePrint();
 	Debug::enableSteps();
 	Emu::startSystem();
 

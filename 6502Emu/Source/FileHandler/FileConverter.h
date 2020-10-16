@@ -9,5 +9,5 @@
 
 namespace FileConverter
 {
-	void ConvertToBin(std::string fileName);
+	void OutputToBin(std::vector<BYTE> data, std::string fileName);
 }

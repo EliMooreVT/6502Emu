@@ -6,8 +6,9 @@ void CSystem::initSystem()
 	g_system = new CSystem();
 	CMemory::initMemory();
 	CPU::initCPU();
+	std::string fileName = "Code.txt";
 	
-	g_system->loadRom("Code.txt", 0x0600);
+	g_system->loadRom(fileName, 0x0600);
 	g_pc = 0x0600;
 
 	g_cpu->run();
@@ -33,7 +34,7 @@ void CSystem::loadRom(std::string fileName, BIT_16 BufIdx)
 	Debug::printBr();
 	Debug::println("Loading Rom");
 	Debug::println("Converting to binary file");
-	FileConverter::ConvertToBin(fileName);
+	FileConverter::OutputToBin(FileLoader::loadByteTextFile(fileName),FileLoader::rmExtension(fileName));
 	Debug::println("Loading file into vector");
 	std::vector<BYTE> rom = FileLoader::loadFile(FileLoader::rmExtension(fileName) + ".bin");
 

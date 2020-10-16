@@ -66,11 +66,15 @@ namespace CPU {
 		bool m_flags[6];
 
 		//Instructions
-		void noop();
+		void nop();
 		void lda_imm();
 		void lda_zp();
 
 		void sta_zp();
+		void sta_abs();
+
+		void sec();
+		void clc();
 
 		void adc_imm();
 

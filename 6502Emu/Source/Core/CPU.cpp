@@ -27,8 +27,6 @@ namespace CPU {
 	void C6502::run()
 	{
 		Debug::println("Run CPU");
-		//Debug::Enable();
-		Debug::disableSteps();
 
 		fetchInstruction();
 		while (readInstruction() != 0x00)

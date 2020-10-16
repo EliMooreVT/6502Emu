@@ -17,9 +17,40 @@ std::string FileLoader::rmExtension(std::string fileName)
 	int pos = fileName.find('.');
 	if (pos == -1)
 	{
-		return "";
+		return fileName;
 	}
 	return fileName.substr(0, pos);
+}
+
+std::vector<BYTE> FileLoader::loadByteTextFile(std::string fileName)
+{
+	Debug::printBr();
+	Debug::println("Converting " + fileName + " to bytes");
+
+	std::ifstream inFile;
+	Debug::println("Opening File");
+	inFile.open(fileName, std::ios::in);
+	if (inFile.good())
+	{
+		Debug::println("File Good");
+		std::vector<BYTE> data;
+		BYTE currentByte;
+		std::string currentString;
+		while (inFile.good())
+		{
+			inFile >> currentString;
+			Debug::println("Read " + currentString + " to vector");
+			currentByte = std::stoi(currentString, 0, 16);
+			data.push_back(currentByte);
+		}
+		inFile.close();
+		return data;
+	}
+	else
+	{
+		Debug::println("Could not find file: " + fileName);//TODO: Error Handling
+		return std::vector<BYTE>();
+	}
 }
 
 std::vector<BYTE> FileLoader::loadFile(std::string fileName)

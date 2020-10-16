@@ -14,32 +14,30 @@ namespace CPU
 			g_memory->getBuffer(),
 			m_flags,
 			regs,
-			g_pc,
+			g_pc - 1,
 			0x0000,
 			0x00ff,
 			0x0f
 		);
-		g_memory->getBuffer()[5] = m_instructionRegister;
 		switch (m_instructionRegister)
 		{
-		case 0xea: noop();    break;
+		case 0xea: nop();     break;
 		case 0xa9: lda_imm(); break;
 		case 0xa5: lda_zp();  break;
 		case 0x85: sta_zp();  break;
-		case 0x8d: break;//sta
-		case 0x38: break;//sec
-		case 0x18: break;//clc
+		case 0x8d: sta_abs(); break;
+		case 0x38: sec();     break;
+		case 0x18: clc();     break;
 		case 0x69: adc_imm(); break;
-		case 0x4c: jmp_abs(); break;//jmp
-		default: fetchInstruction(); break;
+		case 0x4c: jmp_abs(); break;
+		default: nop(); break;
 		}
 	}
 
-	void C6502::noop()
+	void C6502::nop()
 	{
 		fetchInstruction();
 	}
-
 
 	void C6502::lda_imm()
 	{
@@ -54,8 +52,6 @@ namespace CPU
 		fetchInstruction();
 	}
 
-
-
 	void C6502::sta_zp()
 	{
 		fetchInstruction();
@@ -63,7 +59,25 @@ namespace CPU
 		g_memory->setByte(byte, getRegister_a());
 		fetchInstruction();
 	}
+	void C6502::sta_abs()
+	{
+		fetchInstruction();
+		BYTE b1 = readInstruction();
+		fetchInstruction();
+		BYTE b2 = readInstruction();
+		setRegister_a(Utils::concBytes(b2,b1));
+	}
 
+	void C6502::sec()
+	{
+		setFlag(F_CARRY, true);
+		fetchInstruction();
+	}
+	void C6502::clc()
+	{
+		setFlag(F_CARRY, false);
+		fetchInstruction();
+	}
 
 	void C6502::adc_imm()
 	{
@@ -80,7 +94,6 @@ namespace CPU
 		setRegister_a(byte + a);
 		fetchInstruction();
 	}
-
 
 	void C6502::jmp_abs()
 	{
