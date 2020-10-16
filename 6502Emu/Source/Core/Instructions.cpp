@@ -71,10 +71,12 @@ namespace CPU
 		BYTE byte = readInstruction();
 		BYTE a = getRegister_a();
 		BIT_16 sum = a + byte;
+		
 		if (sum > 0xff)
 		{
 			setFlag(F_CARRY, true);
 		}
+
 		setRegister_a(byte + a);
 		fetchInstruction();
 	}

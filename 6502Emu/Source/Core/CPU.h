@@ -20,12 +20,10 @@ namespace CPU {
 
 	} Registers;
 
-	enum FLAGS
+	enum FLAG
 	{
 		F_NEGATIVE,
 		F_OVERFLOW,
-		F_IGNORED,
-		F_BREAK,
 		F_DECIMAL,
 		F_INTERRUPT,
 		F_ZERO,

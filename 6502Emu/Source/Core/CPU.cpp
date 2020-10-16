@@ -29,16 +29,6 @@ namespace CPU {
 		Debug::println("Run CPU");
 		//Debug::Enable();
 		Debug::disableSteps();
-		//Debug::mvDisable();
-
-		//BYTE a = 0x12;
-		//BYTE b = 0x34;
-
-		//BIT_16 c = a << 8;
-
-		//BIT_16 result = Utils::concBytes(a,b);
-
-		//std::cout << std::hex << c + b;
 
 		fetchInstruction();
 		while (readInstruction() != 0x00)
@@ -85,7 +75,6 @@ namespace CPU {
 	{ m_registers.y = b; }
 	void C6502::setRegister_sp(BYTE b)
 	{ m_registers.a = b; }
-
 	//Flag Getter
 	bool C6502::getFlag(int flag)
 	{ return g_cpu->m_flags[flag]; }

@@ -10,7 +10,6 @@ namespace Debug
 		bool m_stepsEnabled;
 		bool m_mvEnabled;
 
-		bool m_mv_flags[6];
 		BYTE m_mv_registers[3];
 		Buffer m_mv_memory;
 
@@ -84,14 +83,13 @@ namespace Debug
 
 			//Flags
 			std::cout
-				<< (m_mv_flags[0] ? "N" : "n")
-				<< (m_mv_flags[1] ? "V" : "v")
+				<< (flags[0] ? "N" : "n")
+				<< (flags[1] ? "V" : "v")
 				<< "-"
-				<< (m_mv_flags[2] ? "B" : "b")
-				<< (m_mv_flags[3] ? "D" : "d")
-				<< (m_mv_flags[4] ? "I" : "i")
-				<< (m_mv_flags[5] ? "Z" : "z")
-				<< (m_mv_flags[6] ? "C" : "c");
+				<< (flags[2] ? "D" : "d")
+				<< (flags[3] ? "I" : "i")
+				<< (flags[4] ? "Z" : "z")
+				<< (flags[5] ? "C" : "c");
 
 			std::cout << std::endl;
 			for (BIT_16 i = start; i < end; i++)
