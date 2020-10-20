@@ -21,16 +21,18 @@ namespace CPU
 		);
 		switch (m_instructionRegister)
 		{
-		case 0xea: nop();     break;
-		case 0xa9: lda_imm(); break;
-		case 0xa5: lda_zp();  break;
-		case 0x85: sta_zp();  break;
-		case 0x8d: sta_abs(); break;
-		case 0x38: sec();     break;
-		case 0x18: clc();     break;
-		case 0x69: adc_imm(); break;
-		case 0x4c: jmp_abs(); break;
-		default: nop(); break;
+		case 0xea: nop();      break;
+		case 0xa9: lda_imm();  break;
+		case 0xa5: lda_zp();   break;
+		case 0x85: sta_zp();   break;
+		case 0x8d: sta_abs();  break;
+		case 0x38: sec();      break;
+		case 0x18: clc();      break;
+		case 0x69: adc_imm();  break;
+		case 0xe8: inx();      break;
+		case 0xb0: bcs_rel();  break;
+		case 0x4c: jmp_abs();  break;
+		default:   nop();      break;
 		}
 	}
 
@@ -90,9 +92,40 @@ namespace CPU
 		{
 			setFlag(F_CARRY, true);
 		}
+		else
+		{
+			setFlag(F_CARRY, false);
+		}
 
 		setRegister_a(byte + a);
 		fetchInstruction();
+	}
+
+	void C6502::inx()
+	{
+		setRegister_x(getRegister_x() + 0x01);
+		fetchInstruction();
+	}
+
+	void C6502::bcs_rel()
+	{
+		fetchInstruction();
+		BYTE relLoc = readInstruction();
+		if (getFlag(F_CARRY))
+		{
+			if (relLoc < 0x80)
+			{
+				g_pc += relLoc;
+			}
+			else
+			{
+				g_pc -= 0x0100 - relLoc;
+			}
+
+			
+		}
+		fetchInstruction();
+
 	}
 
 	void C6502::jmp_abs()
@@ -103,6 +136,5 @@ namespace CPU
 		BYTE b2 = readInstruction();
 		g_pc = Utils::concBytes(b2,b1);
 		fetchInstruction();
-		g_pc--;
 	}
 }

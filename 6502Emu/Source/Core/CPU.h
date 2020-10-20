@@ -67,6 +67,7 @@ namespace CPU {
 
 		//Instructions
 		void nop();
+
 		void lda_imm();
 		void lda_zp();
 
@@ -77,6 +78,9 @@ namespace CPU {
 		void clc();
 
 		void adc_imm();
+		void inx();
+
+		void bcs_rel();
 
 		void jmp_abs();
 
