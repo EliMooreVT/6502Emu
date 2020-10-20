@@ -6,7 +6,7 @@ int main()
 
 	Debug::mvEnable();
 	Debug::enablePrint();
-	Debug::enableSteps();
+	Debug::disableSteps();
 	Emu::startSystem();
 
 	Emu::endSystem();

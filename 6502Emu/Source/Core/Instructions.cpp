@@ -67,7 +67,7 @@ namespace CPU
 		BYTE b1 = readInstruction();
 		fetchInstruction();
 		BYTE b2 = readInstruction();
-		setRegister_a(Utils::concBytes(b2,b1));
+		setRegister_a(g_memory->getByte(Utils::concBytes(b2,b1)));
 	}
 
 	void C6502::sec()
@@ -98,9 +98,17 @@ namespace CPU
 		}
 
 		setRegister_a(byte + a);
+
+		if (getRegister_a() == 0x00)
+		{
+			setFlag(F_ZERO, 1);
+		}
+		else
+		{
+			setFlag(F_ZERO, 0);
+		}
 		fetchInstruction();
 	}
-
 	void C6502::inx()
 	{
 		setRegister_x(getRegister_x() + 0x01);
@@ -125,7 +133,63 @@ namespace CPU
 			
 		}
 		fetchInstruction();
+	}
+	void C6502::bcc_rel()
+	{
+		fetchInstruction();
+		BYTE relLoc = readInstruction();
+		if (!getFlag(F_CARRY))
+		{
+			if (relLoc < 0x80)
+			{
+				g_pc += relLoc;
+			}
+			else
+			{
+				g_pc -= 0x0100 - relLoc;
+			}
 
+
+		}
+		fetchInstruction();
+	}
+	void C6502::beq_rel()
+	{
+		fetchInstruction();
+		BYTE relLoc = readInstruction();
+		if (getFlag(F_ZERO))
+		{
+			if (relLoc < 0x80)
+			{
+				g_pc += relLoc;
+			}
+			else
+			{
+				g_pc -= 0x0100 - relLoc;
+			}
+
+
+		}
+		fetchInstruction();
+	}
+	void C6502::bne_rel()
+	{
+		fetchInstruction();
+		BYTE relLoc = readInstruction();
+		if (!getFlag(F_ZERO))
+		{
+			if (relLoc < 0x80)
+			{
+				g_pc += relLoc;
+			}
+			else
+			{
+				g_pc -= 0x0100 - relLoc;
+			}
+
+
+		}
+		fetchInstruction();
 	}
 
 	void C6502::jmp_abs()

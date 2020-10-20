@@ -81,6 +81,9 @@ namespace CPU {
 		void inx();
 
 		void bcs_rel();
+		void bcc_rel();
+		void beq_rel();
+		void bne_rel();
 
 		void jmp_abs();
 
