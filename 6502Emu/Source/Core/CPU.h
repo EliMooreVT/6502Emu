@@ -70,6 +70,7 @@ namespace CPU {
 
 		void lda_imm();
 		void lda_zp();
+		void lda_abs();
 
 		void sta_zp();
 		void sta_abs();

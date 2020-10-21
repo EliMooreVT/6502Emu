@@ -24,6 +24,7 @@ namespace CPU
 		case 0xea: nop();      break;
 		case 0xa9: lda_imm();  break;
 		case 0xa5: lda_zp();   break;
+		case 0xad: lda_abs();  break;
 		case 0x85: sta_zp();   break;
 		case 0x8d: sta_abs();  break;
 		case 0x38: sec();      break;
@@ -31,6 +32,9 @@ namespace CPU
 		case 0x69: adc_imm();  break;
 		case 0xe8: inx();      break;
 		case 0xb0: bcs_rel();  break;
+		case 0x90: bcc_rel();  break;
+		case 0xf0: beq_rel();  break;
+		case 0xd0: bne_rel();  break;
 		case 0x4c: jmp_abs();  break;
 		default:   nop();      break;
 		}
@@ -51,6 +55,15 @@ namespace CPU
 	{
 		fetchInstruction();
 		setRegister_a(g_memory->getByte(readInstruction()));
+		fetchInstruction();
+	}
+	void C6502::lda_abs()
+	{
+		fetchInstruction();
+		BYTE b1 = readInstruction();
+		fetchInstruction();
+		BYTE b2 = readInstruction();
+		setRegister_a(g_memory->getByte(Utils::concBytes(b2, b1)));
 		fetchInstruction();
 	}
 
