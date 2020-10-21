@@ -4,9 +4,6 @@
 
 
 namespace CPU {
-
-
-
 	typedef struct SRegisters
 	{
 		//Main
