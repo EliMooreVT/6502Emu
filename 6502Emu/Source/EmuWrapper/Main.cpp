@@ -1,5 +1,6 @@
 #include "Core\Emu.h"
 #include <iostream>
+#include <Assembler/Assembler.h>
 
 int main()
 {
@@ -7,9 +8,12 @@ int main()
 	Debug::mvEnable();
 	Debug::enablePrint();
 	Debug::disableSteps();
-	Emu::startSystem();
 
-	Emu::endSystem();
+	//Assembler::assembleFromFile("Code.asm");
+
+	//Emu::startSystem();
+
+	//Emu::endSystem();
 	
 	
 }
