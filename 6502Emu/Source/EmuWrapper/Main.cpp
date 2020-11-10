@@ -4,16 +4,16 @@
 
 int main()
 {
-
+	Debug::startDebugger();
 	Debug::mvEnable();
 	Debug::enablePrint();
 	Debug::disableSteps();
 
 	//Assembler::assembleFromFile("Code.asm");
 
-	//Emu::startSystem();
+	Emu::startSystem();
 
-	//Emu::endSystem();
+	Emu::endSystem();
 	
 	
 }

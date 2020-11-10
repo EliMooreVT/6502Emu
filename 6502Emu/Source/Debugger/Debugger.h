@@ -2,10 +2,14 @@
 #include "Common/Utils.h"
 #include <string>
 #include <iostream>
+#include "ConsoleWriter.h"
 
 
 namespace Debug
 {
+
+	void startDebugger();
+	void endDebugger();
 
 	void print(std::string str);
 	void printb(BYTE b);
@@ -21,14 +25,39 @@ namespace Debug
 
 	void mvEnable();
 	void mvDisable();
+
+	void updateMemLoc(BIT_16 loc, BYTE byte);
+
 	void updateMV(//MemViewer
-		Buffer mem,
 		bool flags[6],
 		BYTE registers[3],
-		BIT_16 pc,
-		BIT_16 start, 
-		BIT_16 end, 
-		BYTE lineLength
+		BIT_16 pc
 		);
 	
 }
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//

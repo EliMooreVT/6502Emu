@@ -72,6 +72,9 @@ namespace CPU {
 		void sta_zp();
 		void sta_abs();
 
+		void stx_zp();
+		void stx_abs();
+
 		void sec();
 		void clc();
 

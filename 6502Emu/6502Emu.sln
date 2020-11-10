@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Source\Common\Com
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assembler", "Source\Assembler\Assembler.vcxproj", "{61BE02D9-B34F-450E-80EB-B273C5DE514F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputHandler", "Source\InputHandler\InputHandler.vcxproj", "{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{61BE02D9-B34F-450E-80EB-B273C5DE514F}.Release|x64.Build.0 = Release|x64
 		{61BE02D9-B34F-450E-80EB-B273C5DE514F}.Release|x86.ActiveCfg = Release|Win32
 		{61BE02D9-B34F-450E-80EB-B273C5DE514F}.Release|x86.Build.0 = Release|Win32
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Debug|x64.ActiveCfg = Debug|x64
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Debug|x64.Build.0 = Debug|x64
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Debug|x86.ActiveCfg = Debug|Win32
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Debug|x86.Build.0 = Debug|Win32
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x64.ActiveCfg = Release|x64
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x64.Build.0 = Release|x64
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x86.ActiveCfg = Release|Win32
+		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

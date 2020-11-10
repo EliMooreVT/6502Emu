@@ -1,21 +1,72 @@
 #include "debugger.h"
 #include <iomanip>
+#include <InputHandler/Input.h>
 
 namespace Debug
 {
 
 	namespace //Private Variables
 	{
+		ConsoleWriter m_cw(120, 110);
+		Box m_mvBox(1, 1, 25, 54, &m_cw);
+		LogBox m_logBox(56, 1, 100, 63, &m_cw);
 		bool m_printEnabled;
 		bool m_stepsEnabled;
 		bool m_mvEnabled;
+	}
+
+	void startDebugger()
+	{
+		
+		BIT_16 startingLine = 0x0000;
+		//Init mv
+		m_mvBox.write(0,  0, "|-------------------Memory  Viewer-------------------|");
+		for (int i = 0; i < 25; i++)
+		{
+			m_mvBox.write(0,i,'|');
+			m_mvBox.write(53, i, '|');
+		}
+		m_mvBox.write(0, 24, "|----------------------------------------------------|");
+
+
+		m_mvBox.write(1,  1, "A:  0x");
+		m_mvBox.write(1,  2, "X:  0x");
+		m_mvBox.write(1,  3, "Y:  0x");
+		m_mvBox.write(1,  4, "PC: 0x");
+
+		m_mvBox.write(15, 2, "N V - D I Z C");
+		m_mvBox.write(15, 3, "    -        ");
+
+		m_mvBox.write(1,  5,  "- - - - - - - - - - - - - - - - - - - - - - - - - - ");
+
+		for (int i = 6; i < 24; i++)
+		{
+			m_mvBox.write(1, i, "0x" + Utils::hexString(startingLine) + ": ");
+			startingLine += 0x0010;
+		}
+
+		BYTE zero = 0x00;
+
+		for (int i = 6; i < 24; i++)
+		{
+			for (int j = 0; j < 16; j++)
+			{
+				m_mvBox.write(9 + j * 3, i, Utils::hexString(zero));
+			}
+		}
+
+	}
+
+	void endDebugger()
+	{
+
 	}
 
 	void print(std::string str)
 	{
 		if (m_printEnabled)
 		{
-			std::cout << str;
+			m_logBox.print(str);
 		}
 	}
 
@@ -23,7 +74,7 @@ namespace Debug
 	{
 		if (m_printEnabled)
 		{
-			std::cout << std::setfill('0') << std::setw(2) << std::hex << (int)b;
+			m_logBox.print("0x" + Utils::hexString(b));
 		}
 	}
 
@@ -31,7 +82,7 @@ namespace Debug
 	{
 		if (m_printEnabled)
 		{
-			std::cout << std::setfill('0') << std::setw(4) << std::hex << (int)b;
+			m_logBox.print("0x" + Utils::hexString(b));
 		}
 	}
 
@@ -39,7 +90,7 @@ namespace Debug
 	{
 		if (m_printEnabled)
 		{
-			std::cout << str << std::endl;
+			m_logBox.println(str);
 		}
 
 	}
@@ -48,10 +99,12 @@ namespace Debug
 	{
 		if (m_printEnabled)
 		{
-			std::cout << std::endl << "----------------------" << std::endl;
+			m_logBox.println("----------------------");
 		}
 		
 	}
+
+	
 
 	void enablePrint()
 	{ m_printEnabled = true; }
@@ -68,60 +121,62 @@ namespace Debug
 	void mvDisable()
 	{ m_mvEnabled = false; }
 
+	void updateMemLoc(BIT_16 loc, BYTE byte)
+	{
+		if(loc < 0x0120 && loc >= 0x0000)
+		m_mvBox.write(9 + (loc & 0x0f) * 3, 6 + ((loc & 0xf0) >> 4), Utils::hexString(byte));
+	}
 
-
-	void updateMV(//MemViewer
-		Buffer mem,
+	void updateMV(
 		bool flags[6],
 		BYTE registers[3],
-		BIT_16 pc,
-		BIT_16 start,
-		BIT_16 end,
-		BYTE lineLength
+		BIT_16 pc
 	)
 	{
 		if (m_mvEnabled)
-		{//TODO:Error Handling
-			std::cout << std::endl << "\033[2J\033[0;0H";//New page
-			std::cout << "-----------------Memory Viewer----------------" << std::endl;
+		{
 
-			//Registers
-			std::cout 
-				<< "A: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[0] << " | "
-				<< "X: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[1] << " | "
-				<< "Y: " << std::setfill('0') << std::setw(2) << std::hex << (int)registers[2] << " | "
-				<< "PC: " << std::setfill('0') << std::setw(4) << std::hex << (int)pc << " | ";
+			m_mvBox.write(7, 1, Utils::hexString(registers[0]));
+			m_mvBox.write(7, 2, Utils::hexString(registers[1]));
+			m_mvBox.write(7, 3, Utils::hexString(registers[2]));
+			m_mvBox.write(7, 4, Utils::hexString(pc));
 
+			m_mvBox.write(15, 3, std::to_string(flags[0]));
+			m_mvBox.write(17, 3, std::to_string(flags[1]));
+			m_mvBox.write(21, 3, std::to_string(flags[2]));
+			m_mvBox.write(23, 3, std::to_string(flags[3]));
+			m_mvBox.write(25, 3, std::to_string(flags[4]));
+			m_mvBox.write(27, 3, std::to_string(flags[5]));
 
-			//Flags
-			std::cout
-				<< (flags[0] ? "N" : "n")
-				<< (flags[1] ? "V" : "v")
-				<< "-"
-				<< (flags[2] ? "D" : "d")
-				<< (flags[3] ? "I" : "i")
-				<< (flags[4] ? "Z" : "z")
-				<< (flags[5] ? "C" : "c");
+			BIT_16 startingPos = 0x0000;
+			
 
-			std::cout << " | Inst: 0x" << std::setfill('0') << std::setw(2) << std::hex << (int)mem[pc];
+			//m_cw.write(0,0,"A:");
+			//
+			//m_cw.write(0, 0, "X:");
+			//
+			//m_cw.write(0, 0, "Y:");
+			//
+			//m_cw.write(0, 0, "PC:");
 
-			std::cout << std::endl;
-			for (BIT_16 i = start; i < end; i++)
+			m_cw.update();
+			if (Input::getKeyOnce(VK_NEXT))
 			{
-				if (i % lineLength == 0)
-				{
-					std::cout << std::hex << std::endl << "0x" << std::setfill('0') << std::setw(4) << i << ": ";
-				}
-
-				std::cout << std::setfill('0') << std::setw(2) << std::hex << (int)mem[i] << " | ";
-
-
+				m_stepsEnabled = true;
 			}
-			std::cout << std::endl;
+
+
 			if (m_stepsEnabled)
 			{
-				std::cin.get();
+				while (!Input::getKeyOnce(VK_RETURN) && m_stepsEnabled && !Input::getKeyDown(VK_ESCAPE))
+				{
+					if (Input::getKeyOnce(VK_NEXT))
+					{
+						m_stepsEnabled = false;
+					}
+				}
 			}
+
 		}
 	}
 }

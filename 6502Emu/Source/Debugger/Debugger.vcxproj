@@ -141,14 +141,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleWriter.cpp" />
     <ClCompile Include="Debugger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleWriter.h" />
     <ClInclude Include="Debugger.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.vcxproj">
       <Project>{fffba570-f89a-4445-b2e4-892d431c1759}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\InputHandler\InputHandler.vcxproj">
+      <Project>{d5dd9ff3-67ce-49dd-9274-709ba31dce39}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -46,6 +46,7 @@ void CMemory::setByte(BIT_16 address, BYTE value)
 {
 	if (address <= m_memoryCapacity) {
 		m_memory[address] = value;
+		Debug::updateMemLoc(address, value);
 	}
 	else {
 		//TODO: Error Handling

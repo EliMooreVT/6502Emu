@@ -1,4 +1,5 @@
 #include "stdIncludes.h"
+#include <InputHandler/Input.h>
 
 namespace CPU {
 
@@ -29,7 +30,7 @@ namespace CPU {
 		Debug::println("Run CPU");
 
 		fetchInstruction();
-		while (readInstruction() != 0x00)
+		while (readInstruction() != 0x00 && !Input::getKeyDown(VK_ESCAPE))
 		{
 			execute();
 		}

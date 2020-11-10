@@ -11,13 +11,9 @@ namespace CPU
 				getRegister_y()
 		};
 		Debug::updateMV(
-			g_memory->getBuffer(),
 			m_flags,
 			regs,
-			g_pc - 1,
-			0x0000,
-			0x00ff,
-			0x0f
+			g_pc - 1
 		);
 		switch (m_instructionRegister)
 		{
@@ -27,6 +23,8 @@ namespace CPU
 		case 0xad: lda_abs();  break;
 		case 0x85: sta_zp();   break;
 		case 0x8d: sta_abs();  break;
+		case 0x86: stx_zp();   break;
+		case 0x8e: stx_abs();  break;
 		case 0x38: sec();      break;
 		case 0x18: clc();      break;
 		case 0x69: adc_imm();  break;
@@ -80,7 +78,23 @@ namespace CPU
 		BYTE b1 = readInstruction();
 		fetchInstruction();
 		BYTE b2 = readInstruction();
-		setRegister_a(g_memory->getByte(Utils::concBytes(b2,b1)));
+		g_memory->setByte(Utils::concBytes(b2, b1), getRegister_a());
+	}
+
+	void C6502::stx_zp()
+	{
+		fetchInstruction();
+		BYTE byte = readInstruction();
+		g_memory->setByte(byte, getRegister_x());
+		fetchInstruction();
+	}
+	void C6502::stx_abs()
+	{
+		fetchInstruction();
+		BYTE b1 = readInstruction();
+		fetchInstruction();
+		BYTE b2 = readInstruction();
+		g_memory->setByte(Utils::concBytes(b2, b1), getRegister_x());
 	}
 
 	void C6502::sec()
