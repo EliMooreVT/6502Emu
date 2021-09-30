@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assembler", "Source\Assembl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputHandler", "Source\InputHandler\InputHandler.vcxproj", "{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NesInput", "Source\NesInput\NesInput.vcxproj", "{AF4C4339-30D9-4A67-B345-C4CE751A3444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x64.Build.0 = Release|x64
 		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x86.ActiveCfg = Release|Win32
 		{D5DD9FF3-67CE-49DD-9274-709BA31DCE39}.Release|x86.Build.0 = Release|Win32
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Debug|x64.ActiveCfg = Debug|x64
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Debug|x64.Build.0 = Debug|x64
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Debug|x86.Build.0 = Debug|Win32
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Release|x64.ActiveCfg = Release|x64
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Release|x64.Build.0 = Release|x64
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Release|x86.ActiveCfg = Release|Win32
+		{AF4C4339-30D9-4A67-B345-C4CE751A3444}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
