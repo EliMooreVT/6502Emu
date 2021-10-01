@@ -1,0 +1,4 @@
+^C:\SOURCE\REPOS\OTHER PROJECTS\PROFESSIONAL\6502EMU\6502EMU\INCLUDE\WX\WXWIDGETS-3.1.5\INCLUDE\WX\MSW\SETUP.H
+copy "C:\source\repos\Other Projects\Professional\6502Emu\6502Emu\include\wx\wxWidgets-3.1.5\include\wx\msw\setup.h" ..\..\lib\vc_lib\mswu\wx\setup.h
+^C:\SOURCE\REPOS\OTHER PROJECTS\PROFESSIONAL\6502EMU\6502EMU\INCLUDE\WX\WXWIDGETS-3.1.5\INCLUDE\WX\MSW\GENRCDEFS.H
+cl /EP /nologo "C:\source\repos\Other Projects\Professional\6502Emu\6502Emu\include\wx\wxWidgets-3.1.5\include\wx\msw\genrcdefs.h" > "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h"
