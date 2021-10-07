@@ -149,6 +149,8 @@
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="ResourceHandler.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,7 @@
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="ResourceHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource.aps" />
@@ -165,6 +168,9 @@
     <ProjectReference Include="..\Common\Common.vcxproj">
       <Project>{fffba570-f89a-4445-b2e4-892d431c1759}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GuiHandler.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

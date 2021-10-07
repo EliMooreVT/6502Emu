@@ -1,7 +1,12 @@
 #pragma once
+#include "GuiHandler/Gui.h"
+
 
 class GUI
 {
 public:
-	static void addWindow();
+	GUI();
+	virtual void OnInit();
+
 };
+

@@ -2,7 +2,6 @@
 #include "App.h"
 
 
-
 class Gui
 {
 public:

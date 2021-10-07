@@ -1,7 +1,6 @@
 #include "GUI.h"
 #include <GuiHandler/Gui.h>
 
-void GUI::addWindow()
+GUI::GUI()
 {
-	Gui::addWindow();
 }

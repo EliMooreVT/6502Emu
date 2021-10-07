@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-
+#include <GuiWrapper/GUI.h>
+#define _CRT_SECURE_NO_WARNINGS
 #include "Core\CPU.h"
 #include "Core\Memory.h"
 #include "Core\System.h"

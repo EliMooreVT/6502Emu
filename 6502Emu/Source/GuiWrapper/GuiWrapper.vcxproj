@@ -148,12 +148,12 @@
     <ClInclude Include="GUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GuiHandler\GuiHandler.vcxproj">
       <Project>{b1bef190-46b3-4091-a7e3-87b4cfac22e0}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="GUI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

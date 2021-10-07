@@ -1,8 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "Core\Emu.h"
+#include <Core/Emu.h>
 #include <iostream>
 #include <Assembler/Assembler.h>
-#include <GuiWrapper/GUI.h>
 
 int main()
 {
@@ -16,6 +15,4 @@ int main()
 	//Emu::startSystem();
 
 	//Emu::endSystem();
-	
-	
 }

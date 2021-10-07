@@ -2,6 +2,9 @@
 #include <wx/xrc/xmlres.h>
 #include <wx/xml/xml.h>
 
+
+
+
 Frame::Frame() : wxFrame(NULL, 0, "Hello")
 {
 	

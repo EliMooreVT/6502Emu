@@ -4,6 +4,7 @@
 
 extern CPU::C6502 * g_cpu;
 
+class CSystem;
 
 extern CSystem* g_system;
 

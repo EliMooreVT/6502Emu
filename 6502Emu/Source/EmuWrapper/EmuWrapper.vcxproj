@@ -88,7 +88,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source;$(SolutionDir)include\wx\wxWidgets-3.1.5\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -105,7 +105,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source;$(SolutionDir)include\wx\wxWidgets-3.1.5\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -159,9 +159,6 @@
     <ProjectReference Include="..\FileHandler\FileHandler.vcxproj">
       <Project>{f4d95b42-2b99-4c87-a581-65ff916b036f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\GuiWrapper\GuiWrapper.vcxproj">
-      <Project>{fc6512de-b595-46f8-9e0d-d9103a8036b1}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Code.txt" />
@@ -169,6 +166,10 @@
   <ItemGroup>
     <None Include="Code.asm" />
     <None Include="Code.bin" />
+    <None Include="resource.xrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GuiRequest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

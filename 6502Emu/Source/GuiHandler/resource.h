@@ -29,34 +29,41 @@
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class MainWindow
+/// Class MainWindowVirt
 ///////////////////////////////////////////////////////////////////////////////
-class MainWindow : public wxFrame
+class MainWindowVirt : public wxFrame
 {
 	private:
 
 	protected:
+		enum
+		{
+			ID_MAIN = 1000
+		};
+
 		wxMenuBar* m_menu;
 		wxMenu* m_file;
 		wxMenu* m_help;
-		wxGrid* Memory;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnOpen( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnExit( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnAbout( wxCommandEvent& event ) { event.Skip(); }
+
 
 	public:
+		wxGrid* m_Memory;
 
-		MainWindow( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("6502Emu"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 867,593 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MainWindowVirt( wxWindow* parent, wxWindowID id = ID_MAIN, const wxString& title = wxT("Emu6502"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 867,593 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
-		~MainWindow();
-
-		void OnOpen(wxCommandEvent& event);
-		void OnExit(wxCommandEvent& event);
-		void OnAbout(wxCommandEvent& event);
+		~MainWindowVirt();
 
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class AboutPage
+/// Class AboutPageVirt
 ///////////////////////////////////////////////////////////////////////////////
-class AboutPage : public wxDialog
+class AboutPageVirt : public wxDialog
 {
 	private:
 
@@ -66,13 +73,15 @@ class AboutPage : public wxDialog
 		wxHyperlinkCtrl* m_link;
 		wxButton* m_ok;
 
+		// Virtual event handlers, override them in your derived class
+		virtual void OnOK( wxCommandEvent& event ) { event.Skip(); }
+
+
 	public:
 
-		AboutPage( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("About"), const wxPoint& pos = wxPoint( -1,-1 ), const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_DIALOG_STYLE );
+		AboutPageVirt( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("About"), const wxPoint& pos = wxPoint( -1,-1 ), const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_DIALOG_STYLE );
 
-		~AboutPage();
-
-		void OnOK(wxCommandEvent& event);
+		~AboutPageVirt();
 
 };
 

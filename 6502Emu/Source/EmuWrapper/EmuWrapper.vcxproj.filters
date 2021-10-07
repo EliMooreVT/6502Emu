@@ -26,10 +26,16 @@
     <None Include="Code.asm">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="resource.xrc" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Code.txt">
       <Filter>Source Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GuiRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
