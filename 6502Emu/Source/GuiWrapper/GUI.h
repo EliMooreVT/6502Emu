@@ -1,12 +1,12 @@
 #pragma once
-#include "GuiHandler/Gui.h"
+#include "GuiHandler/GuiHandler.h"
+
 
 
 class GUI
 {
 public:
 	GUI();
-	virtual void OnInit();
-
+	~GUI();
 };
 

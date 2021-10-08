@@ -24,6 +24,7 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 #include "ResourceHandler.h"
+#include "GuiHandler.h"
 
 
 wxIMPLEMENT_APP(App);
@@ -32,5 +33,9 @@ bool App::OnInit()
 {
 	MainWindow * mainWindow = new MainWindow(NULL);
 	mainWindow->Show(true);
+
+	SetGui();
+	GuiData::Function::initSystem();
+
 	return true;
 }

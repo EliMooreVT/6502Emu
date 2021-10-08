@@ -2,6 +2,7 @@
 #include <Core/Emu.h>
 #include <iostream>
 #include <Assembler/Assembler.h>
+#define CONSOLE_DEBUG 0
 
 int main()
 {

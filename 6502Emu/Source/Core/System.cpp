@@ -1,19 +1,14 @@
 #include "Common\Utils.h"
 #include "stdIncludes.h"
+#define ROM_START 0x0600
 
 void CSystem::initSystem()
 {
 	g_system = new CSystem();
 	CMemory::initMemory();
 	CPU::initCPU();
-	std::string fileName = "Code.txt";
 	
-	g_system->loadRom(fileName, 0x0600);
 	g_pc = 0x0600;
-
-	g_cpu->run();
-	
-	
 }
 
 void CSystem::destrSystem()
@@ -21,6 +16,11 @@ void CSystem::destrSystem()
 	Debug::println("Destroy System");
 	delete g_system;
 	g_system = nullptr;
+}
+
+void CSystem::startRom()
+{
+	g_cpu->run();
 }
 
 CSystem::CSystem()

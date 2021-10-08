@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -147,7 +147,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Frame.h" />
-    <ClInclude Include="Gui.h" />
+    <ClInclude Include="GuiHandler.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="ResourceHandler.h" />
@@ -156,7 +156,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Frame.cpp" />
-    <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="GuiHandler.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceHandler.cpp" />
   </ItemGroup>

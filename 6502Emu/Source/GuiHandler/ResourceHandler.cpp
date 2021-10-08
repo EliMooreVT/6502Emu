@@ -1,6 +1,9 @@
 #include "ResourceHandler.h"
 #include <wx/filedlg.h>
 #include <wx/wfstream.h>
+#include "GuiHandler.h"
+#include "Common/Utils.h"
+#include <string>
 
 void MainWindow::SetupMemory()
 {
@@ -23,12 +26,8 @@ void MainWindow::OnOpen(wxCommandEvent& event)
 	wxFileDialog fileDlg(this, _("Open ASM file"), "", "");
 	if (fileDlg.ShowModal() == wxID_CANCEL)
 		return;
-
-	wxFileInputStream input_stream(fileDlg.GetPath());
-	if (!input_stream.IsOk())
-	{
-		return;
-	}
+	GuiData::Function::OpenFile(fileDlg.GetPath().ToStdString());
+	m_Memory->SetColLabelValue(0, Utils::hexString(GuiData::Function::GetPC()));
 }
 
 

@@ -1,6 +1,12 @@
 #include "GUI.h"
-#include <GuiHandler/Gui.h>
+#include <GuiHandler/GuiHandler.h>
 
 GUI::GUI()
 {
 }
+
+GUI::~GUI()
+{
+}
+
+

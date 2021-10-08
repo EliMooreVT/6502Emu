@@ -1,5 +1,6 @@
 #pragma once
+#include "stdIncludes.h"
 
-class CGui
+class CGui : GUI
 {
 };
