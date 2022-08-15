@@ -7,7 +7,12 @@ namespace Input
 {
 	namespace
 	{
+#ifdef _WIN32
 		std::unordered_map<unsigned short, bool> m_keysHeld;
+#endif
+#ifdef __linux__
+		char currentChar;
+#endif
 	}
 
 	bool getKeyDown(char key);

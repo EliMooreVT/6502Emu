@@ -4,10 +4,12 @@ ConsoleWriter::ConsoleWriter(int screenWidth, int screenHeight)
 {
 	nScreenHeight = screenHeight;
 	nScreenWidth = screenWidth;
+#if defined(_WIN32)
 	m_screenBuffer = new wchar_t[screenWidth * screenHeight];
 	hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 	SetConsoleActiveScreenBuffer(hConsole);
 	dwBytesWritten = 0;
+
 
 	m_screenBuffer[nScreenWidth * nScreenHeight - 1] = '\0';
 
@@ -15,11 +17,25 @@ ConsoleWriter::ConsoleWriter(int screenWidth, int screenHeight)
 	{
 		m_screenBuffer[i] = L' ';
 	}
+#endif
+#ifdef __linux__
+	initscr();
+	noecho();
+	nodelay(stdscr, true);
+	//wtimeout(stdscr, 1);
+	keypad(stdscr, true);
+	
+#endif
 }
 
 ConsoleWriter::~ConsoleWriter()
 {
+#ifdef _WIN32
 	delete[] m_screenBuffer;
+#endif
+#ifdef __linux__
+	endwin();
+#endif
 }
 
 void ConsoleWriter::write(int x, int y, wchar_t letter)
@@ -30,12 +46,15 @@ void ConsoleWriter::write(int x, int y, wchar_t letter)
 	}
 	else
 	{
+#ifdef _WIN32
 		int index = y * nScreenWidth + x;
 		m_screenBuffer[index] = letter;
+#endif
+		mvwaddch(stdscr, y, x, char(letter));
 	}
 }
 
-void ConsoleWriter::clear(int x, int y)
+void ConsoleWriter::clearLetter(int x, int y)
 {
 	if (x > nScreenWidth || y > nScreenHeight || x < 0 || y < 0)
 	{
@@ -43,14 +62,24 @@ void ConsoleWriter::clear(int x, int y)
 	}
 	else
 	{
+#ifdef _WIN32
 		int index = y * nScreenWidth + x;
 		m_screenBuffer[index] = L' ';
+#endif
+#ifdef __linux__
+		clear();
+#endif
 	}
 }
 
 void ConsoleWriter::update()
 {
+#ifdef _WIN32
 	WriteConsoleOutputCharacter(hConsole, m_screenBuffer, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
+#endif
+#ifdef __linux__
+	refresh();
+#endif
 }
 
 
@@ -76,6 +105,7 @@ void Box::write(int x, int y, char letter)
 
 void Box::write(int x, int y, std::string s)
 {
+#ifdef _WIN32
 	for (int i = 0; i < s.length(); i++)
 	{
 		if (x < m_width && y < m_length && x >= 0 && y >= 0)
@@ -84,6 +114,10 @@ void Box::write(int x, int y, std::string s)
 		}
 		x++;
 	}
+#endif
+#ifdef __linux__
+	mvprintw(y,x, s.c_str());
+#endif
 }
 
 LogBox::LogBox(int x, int y, int length, int width, ConsoleWriter* m_cw)

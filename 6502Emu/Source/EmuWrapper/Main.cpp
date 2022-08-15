@@ -1,9 +1,11 @@
-#include "Core\Emu.h"
+#include "Core/Emu.h"
 #include <iostream>
 #include <Assembler/Assembler.h>
+#include <Common/Utils.h>
 
 int main()
 {
+
 	Debug::startDebugger();
 	Debug::mvEnable();
 	Debug::enablePrint();

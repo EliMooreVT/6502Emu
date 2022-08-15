@@ -1,5 +1,5 @@
 #pragma once
-#include "Common\TypeDec.h"
+#include "Common/TypeDec.h"
 #include "stdIncludes.h"
 
 

@@ -1,6 +1,16 @@
-#include "debugger.h"
+#include "Debugger.h"
 #include <iomanip>
 #include <InputHandler/Input.h>
+
+#ifdef _WIN32
+define KEY_RIGHT VK_RETURN
+define KEY_ENTER VK_NEXT
+define KEY_ESCAPE VK_ESCAPE
+#endif
+#ifdef __linux__
+#define KEY_ESCAPE 27
+#endif
+
 
 namespace Debug
 {
@@ -23,7 +33,7 @@ namespace Debug
 		m_mvBox.write(0,  0, "|-------------------Memory  Viewer-------------------|");
 		for (int i = 0; i < 25; i++)
 		{
-			m_mvBox.write(0,i,'|');
+			m_mvBox.write(1,i,'|');
 			m_mvBox.write(53, i, '|');
 		}
 		m_mvBox.write(0, 24, "|----------------------------------------------------|");
@@ -41,7 +51,7 @@ namespace Debug
 
 		for (int i = 6; i < 24; i++)
 		{
-			m_mvBox.write(1, i, "0x" + Utils::hexString(startingLine) + ": ");
+			m_mvBox.write(2, i, "0x" + Utils::hexString(startingLine) + ": ");
 			startingLine += 0x0010;
 		}
 
@@ -49,7 +59,7 @@ namespace Debug
 
 		for (int i = 6; i < 24; i++)
 		{
-			for (int j = 0; j < 16; j++)
+			for (int j = 1; j < 17; j++)
 			{
 				m_mvBox.write(9 + j * 3, i, Utils::hexString(zero));
 			}
@@ -160,20 +170,21 @@ namespace Debug
 			//m_cw.write(0, 0, "PC:");
 
 			m_cw.update();
-			if (Input::getKeyOnce(VK_NEXT))
+
+			if (Input::getKeyOnce(KEY_ENTER))
 			{
 				m_stepsEnabled = true;
 			}
 
-
 			if (m_stepsEnabled)
 			{
-				while (!Input::getKeyOnce(VK_RETURN) && m_stepsEnabled && !Input::getKeyDown(VK_ESCAPE))
+				while (!Input::getKeyOnce(KEY_RIGHT) && m_stepsEnabled && !Input::getKeyDown(KEY_ESCAPE))
 				{
-					if (Input::getKeyOnce(VK_NEXT))
+					if (Input::getKeyOnce(KEY_ENTER))
 					{
 						m_stepsEnabled = false;
 					}
+					refresh();
 				}
 			}
 

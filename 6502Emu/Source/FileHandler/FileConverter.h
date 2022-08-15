@@ -1,7 +1,7 @@
 #pragma once
-#include "Common\TypeDec.h"
+#include "Common/TypeDec.h"
 #include "FileLoader.h"
-#include "Debugger\Debugger.h"
+#include "Debugger/Debugger.h"
 #include <iostream>
 #include <string>
 #include <fstream>

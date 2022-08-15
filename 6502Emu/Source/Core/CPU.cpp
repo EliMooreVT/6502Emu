@@ -1,6 +1,10 @@
 #include "stdIncludes.h"
 #include <InputHandler/Input.h>
 
+#ifdef __linux__
+#define KEY_ESCAPE 27
+#endif
+
 namespace CPU {
 
 	void initCPU()
@@ -30,7 +34,12 @@ namespace CPU {
 		Debug::println("Run CPU");
 
 		fetchInstruction();
+#ifdef _WIN32
 		while (readInstruction() != 0x00 && !Input::getKeyDown(VK_ESCAPE))
+#endif
+#ifdef __linux__
+		while(readInstruction() != 0x00 && !Input::getKeyDown(KEY_ESCAPE))
+#endif
 		{
 			execute();
 		}

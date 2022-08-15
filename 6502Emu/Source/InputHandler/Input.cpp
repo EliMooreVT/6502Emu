@@ -1,4 +1,7 @@
 #include "Input.h"
+
+// WINDOWS
+#if defined(_WIN32)
 #include <Windows.h>
 
 bool Input::getKeyDown(char key)
@@ -48,3 +51,41 @@ bool Input::getKeyOnce(int code)
 		return false;
 	}
 }
+#endif
+
+//LINUX
+#ifdef __linux__
+#include "ncurses.h"
+
+
+bool Input::getKeyDown(char key)
+{
+	return wgetch(stdscr) == key;
+}
+
+bool Input::getKeyDown(int code)
+{
+	return wgetch(stdscr) == code;
+}
+
+bool Input::getKeyOnce(char key)
+{
+	if(currentChar!=key)
+	{
+		currentChar = wgetch(stdscr);
+		return true;
+	}
+	return false;
+}
+
+
+bool Input::getKeyOnce(int code)
+{
+	if(currentChar!=code)
+	{
+		currentChar = wgetch(stdscr);
+		return true;
+	}
+	return false;
+}
+#endif

@@ -1,5 +1,15 @@
 #pragma once
+
+
+#if defined(_WIN32)
 #include <Windows.h>
+#endif
+
+#if defined(__linux__)
+#include "curses.h"
+#include <string>
+#endif
+
 #include <unordered_map>
 
 
@@ -10,15 +20,17 @@ public:
 	~ConsoleWriter();
 
 	void write(int x, int y, wchar_t letter);
-	void clear(int x, int y);
+	void clearLetter(int x, int y);
 
 	void update();
 
 
 private:
+#if defined(_WIN32)
 	wchar_t* m_screenBuffer;
 	HANDLE hConsole;
 	DWORD dwBytesWritten;
+#endif
 	int nScreenWidth = 120;
 	int nScreenHeight = 40;
 };

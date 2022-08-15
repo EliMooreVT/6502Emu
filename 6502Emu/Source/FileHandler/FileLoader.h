@@ -1,9 +1,9 @@
 #pragma once
-#include "Common\TypeDec.h"
+#include "Common/TypeDec.h"
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Debugger\Debugger.h"
+#include "Debugger/Debugger.h"
 
 
 

@@ -1,7 +1,7 @@
-#include "assembler.h"
+#include "Assembler.h"
 #include <fstream>
-#include <FileHandler\FileUtils.h>
-#include <Debugger\Debugger.h>
+#include <FileHandler/FileUtils.h>
+#include <Debugger/Debugger.h>
 
 
 void CodeHandler::addLine(std::string line)
