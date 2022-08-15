@@ -50,7 +50,9 @@ void ConsoleWriter::write(int x, int y, wchar_t letter)
 		int index = y * nScreenWidth + x;
 		m_screenBuffer[index] = letter;
 #endif
+#ifdef __linux__
 		mvwaddch(stdscr, y, x, char(letter));
+#endif
 	}
 }
 

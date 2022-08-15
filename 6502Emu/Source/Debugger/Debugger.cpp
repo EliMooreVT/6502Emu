@@ -3,9 +3,9 @@
 #include <InputHandler/Input.h>
 
 #ifdef _WIN32
-define KEY_RIGHT VK_RETURN
-define KEY_ENTER VK_NEXT
-define KEY_ESCAPE VK_ESCAPE
+#define KEY_RIGHT VK_RETURN
+#define KEY_ENTER VK_NEXT
+#define KEY_ESCAPE VK_ESCAPE
 #endif
 #ifdef __linux__
 #define KEY_ESCAPE 27
@@ -184,7 +184,7 @@ namespace Debug
 					{
 						m_stepsEnabled = false;
 					}
-					refresh();
+					m_cw.update();
 				}
 			}
 
