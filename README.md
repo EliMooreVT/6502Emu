@@ -23,10 +23,12 @@ Full readme will be updated soon.
 (Note: Input is currently finnicky on Linux)
 
 
-- While debugging, the code.txt file in the 'Resources' filter of EmuWrapper is where opcodes are written (hex byte - space - hex byte - space, etc), which is converted into code.bin.
-- In Emu-Wrapper>Main.cpp, there are a few debugger options that can be turned on and off by using commands before using `Emu::startSystem()`:
+### Both
+
+- While debugging, the code.txt file in the Source/EmuWrapper folder is where opcodes are written (hex byte - space - hex byte - space, etc), which is converted into code.bin.
+- In Source/EmuWrapper/Main.cpp, there are a few debugger options that can be turned on and off by using commands before using `Emu::startSystem()`:
   - `Debug::enablePrint()` - Turns on a 'verbose' mode where you can see what the program is currently doing. Mainly for tracking bugs in the system rather than in an assembly program
   - `Debug::mvEnable()` - Turns on the Memory Viewer(MV) that monitors the memory that is being manipulated. This is currently the only way to see what is going on within the system
-  - `Debug::enableSteps()` - Makes the program halt after each instruction so that you can debug step-by-step while developing assembly code
+  - `Debug::enableSteps()` - Makes the program halt after each instruction so that you can debug step-by-step while developing assembly code (Input Currently Broken)
 
 Simpler and more interactable methods of controlling the system and the program itself will be implemented once the emulator itself is further developed
